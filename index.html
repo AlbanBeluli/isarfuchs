@@ -100,15 +100,16 @@
         </div>
         <div class="choice-row" id="choice-row" hidden></div>
 
-        <div class="feedback-row" id="feedback-row" hidden>
-          <p class="feedback" id="feedback" aria-live="assertive"></p>
-          <button type="button" class="speak-btn replay" id="replay-feedback" aria-label="Satz noch mal anhören" title="Nochmal">
-            <span class="speak-icon">🔊</span>
-          </button>
-        </div>
-
-        <div class="practice-actions">
-          <button type="button" class="btn secondary" id="next-btn" hidden>Weiter →</button>
+        <div class="practice-dock" id="practice-dock">
+          <div class="feedback-row is-empty" id="feedback-row">
+            <p class="feedback" id="feedback" aria-live="assertive"></p>
+            <button type="button" class="speak-btn replay" id="replay-feedback" aria-label="Satz noch mal anhören" title="Nochmal" hidden>
+              <span class="speak-icon">🔊</span>
+            </button>
+          </div>
+          <div class="practice-actions">
+            <button type="button" class="btn secondary" id="next-btn" disabled>Weiter →</button>
+          </div>
         </div>
       </section>
     </main>
@@ -161,14 +162,16 @@
           />
           <button type="button" class="btn primary" id="listen-check">Prüfen</button>
         </div>
-        <div class="feedback-row" id="listen-feedback-row" hidden>
-          <p class="feedback" id="listen-feedback" aria-live="assertive"></p>
-          <button type="button" class="speak-btn replay" id="replay-listen" aria-label="Satz noch mal anhören" title="Nochmal">
-            <span class="speak-icon">🔊</span>
-          </button>
-        </div>
-        <div class="practice-actions">
-          <button type="button" class="btn secondary" id="listen-next" hidden>Weiter →</button>
+        <div class="practice-dock" id="listen-dock">
+          <div class="feedback-row is-empty" id="listen-feedback-row">
+            <p class="feedback" id="listen-feedback" aria-live="assertive"></p>
+            <button type="button" class="speak-btn replay" id="replay-listen" aria-label="Satz noch mal anhören" title="Nochmal" hidden>
+              <span class="speak-icon">🔊</span>
+            </button>
+          </div>
+          <div class="practice-actions">
+            <button type="button" class="btn secondary" id="listen-next" disabled>Weiter →</button>
+          </div>
         </div>
       </section>
     </main>

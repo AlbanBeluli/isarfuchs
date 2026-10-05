@@ -155,20 +155,41 @@
   /* ---------- Practice mode ---------- */
   function showFeedback(el, ok, message, clip) {
     const row = el.closest(".feedback-row");
-    if (row) row.hidden = false;
+    if (row) {
+      row.hidden = false;
+      row.classList.remove("is-empty");
+    }
     el.hidden = false;
     el.className = "feedback " + (ok ? "ok" : "bad");
     el.textContent = message;
     const btn = row && row.querySelector(".replay");
-    if (btn) btn.dataset.clip = clip || "";
+    if (btn) {
+      btn.hidden = false;
+      btn.dataset.clip = clip || "";
+    }
   }
 
   function clearFeedback(el) {
     const row = el.closest(".feedback-row");
-    if (row) row.hidden = true;
-    el.hidden = true;
+    if (row) {
+      row.hidden = false;
+      row.classList.add("is-empty");
+    }
+    el.hidden = false;
     el.textContent = "";
     el.className = "feedback";
+    const btn = row && row.querySelector(".replay");
+    if (btn) {
+      btn.hidden = true;
+      btn.dataset.clip = "";
+    }
+  }
+
+  function keepDockInView(dock) {
+    if (!dock) return;
+    requestAnimationFrame(() => {
+      dock.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
   }
 
   function loadPracticeItem(item) {
@@ -179,7 +200,8 @@
     els.input.classList.remove("is-ok", "is-bad");
     els.input.disabled = false;
     els.checkBtn.disabled = false;
-    els.nextBtn.hidden = true;
+    els.nextBtn.disabled = true;
+    els.nextBtn.hidden = false;
     clearFeedback(els.feedback);
     updateProgress();
     if (state.helpMode) showChoices();
@@ -378,19 +400,16 @@
     state.answered = true;
     els.input.disabled = true;
     els.checkBtn.disabled = true;
+    els.nextBtn.disabled = false;
     els.nextBtn.hidden = false;
 
+    const line = `${state.current.emoji} ${state.current.word} → ${state.current.letter}`;
     if (ok) {
       els.input.classList.add("is-ok");
       state.score += 1;
       state.streak += 1;
       const richtigClip = lineUrl("richtig", state.current.word);
-      showFeedback(
-        els.feedback,
-        true,
-        `Richtig! ${state.current.emoji} ${state.current.word} beginnt mit ${state.current.letter}`,
-        richtigClip
-      );
+      showFeedback(els.feedback, true, `Richtig! ${line}`, richtigClip);
       playUrl(richtigClip);
       cheer();
       if (state.streak > 0 && state.streak % 5 === 0) burstConfetti();
@@ -398,16 +417,12 @@
       els.input.classList.add("is-bad");
       state.streak = 0;
       const fastClip = lineUrl("fast", state.current.word);
-      showFeedback(
-        els.feedback,
-        false,
-        `Fast! ${state.current.emoji} ${state.current.word} beginnt mit ${state.current.letter}`,
-        fastClip
-      );
+      showFeedback(els.feedback, false, `Fast! ${line}`, fastClip);
       playUrl(fastClip);
     }
     markChoices(normalizeAnswer(els.input.value));
     updateStats();
+    keepDockInView($("#practice-dock"));
   }
 
   /* ---------- Listen mode ---------- */
@@ -419,7 +434,8 @@
     els.listenInput.classList.remove("is-ok", "is-bad");
     els.listenInput.disabled = false;
     els.listenCheck.disabled = false;
-    els.listenNext.hidden = true;
+    els.listenNext.disabled = true;
+    els.listenNext.hidden = false;
     clearFeedback(els.listenFeedback);
   }
 
@@ -436,34 +452,27 @@
     state.listenAnswered = true;
     els.listenInput.disabled = true;
     els.listenCheck.disabled = true;
+    els.listenNext.disabled = false;
     els.listenNext.hidden = false;
 
+    const line = `${state.listenCurrent.emoji} ${state.listenCurrent.word} → ${state.listenCurrent.letter}`;
     if (ok) {
       els.listenInput.classList.add("is-ok");
       state.score += 1;
       state.streak += 1;
       const jaClip = lineUrl("ja", state.listenCurrent.word);
-      showFeedback(
-        els.listenFeedback,
-        true,
-        `Richtig! Es war ${state.listenCurrent.emoji} ${state.listenCurrent.word} → ${state.listenCurrent.letter}`,
-        jaClip
-      );
+      showFeedback(els.listenFeedback, true, `Richtig! ${line}`, jaClip);
       playUrl(jaClip);
       cheer();
     } else {
       els.listenInput.classList.add("is-bad");
       state.streak = 0;
       const fastClip = lineUrl("fast", state.listenCurrent.word);
-      showFeedback(
-        els.listenFeedback,
-        false,
-        `Fast! ${state.listenCurrent.emoji} ${state.listenCurrent.word} beginnt mit ${state.listenCurrent.letter}`,
-        fastClip
-      );
+      showFeedback(els.listenFeedback, false, `Fast! ${line}`, fastClip);
       playUrl(fastClip);
     }
     updateStats();
+    keepDockInView($("#listen-dock"));
   }
 
   /* ---------- Table mode ---------- */

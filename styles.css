@@ -193,6 +193,13 @@ h1 {
   padding: 16px 16px 14px;
 }
 
+.practice-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: min(72dvh, 640px);
+}
+
 .section-head {
   margin-bottom: 14px;
 }
@@ -464,20 +471,31 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  margin: 2px 0 8px;
+  gap: 8px;
+  margin: 0;
+  min-height: 52px;
+  width: 100%;
 }
 
-.feedback-row[hidden] {
-  display: none !important;
+.feedback-row.is-empty .feedback {
+  visibility: hidden;
+}
+
+.feedback-row.is-empty .replay {
+  visibility: hidden;
 }
 
 .feedback {
   text-align: center;
   font-weight: 800;
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 3.6vw, 1.1rem);
   margin: 0;
-  min-height: 0;
+  min-height: 1.2em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: min(100%, 28rem);
+  line-height: 1.2;
 }
 
 .feedback.ok {
@@ -488,17 +506,38 @@ h1 {
   color: var(--danger);
 }
 
+.practice-dock {
+  position: sticky;
+  bottom: max(10px, env(safe-area-inset-bottom, 0px));
+  margin-top: auto;
+  padding: 10px 8px calc(8px + env(safe-area-inset-bottom, 0px));
+  border-top: 2px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.72), #ffffff 28%);
+  border-radius: 0 0 18px 18px;
+  display: grid;
+  gap: 8px;
+  z-index: 8;
+  box-shadow: 0 -8px 20px rgba(40, 70, 140, 0.06);
+}
+
 .practice-actions {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin-top: 4px;
+  margin-top: 0;
+  min-height: 52px;
 }
 
 .practice-actions .btn.secondary {
-  min-width: 160px;
+  min-width: min(220px, 100%);
+}
+
+.practice-actions .btn.secondary:disabled {
+  opacity: 0.35;
+  cursor: default;
 }
 
 .parent-setup {
@@ -707,14 +746,51 @@ h1 {
     align-items: flex-start;
   }
 
+  .brand-logo {
+    width: 96px;
+    height: 96px;
+    border-radius: 24px;
+  }
+
+  .emoji-bubble {
+    width: min(132px, 38vw);
+    font-size: clamp(3.4rem, 12vw, 4.8rem);
+    border-radius: 26px;
+  }
+
+  .speak-btn.side {
+    min-width: 72px;
+    min-height: 72px;
+  }
+
+  .letter-input {
+    width: 78px;
+    height: 78px;
+    font-size: 2.2rem;
+  }
+
   .answer-row {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .choice {
+    min-height: 64px;
+  }
+
+  .practice-card {
+    min-height: calc(100dvh - 210px);
   }
 
   .btn.primary,
   .btn.secondary {
     width: min(240px, 100%);
+  }
+
+  .practice-dock {
+    position: sticky;
+    bottom: max(6px, env(safe-area-inset-bottom, 0px));
   }
 }
 
