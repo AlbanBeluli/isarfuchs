@@ -187,9 +187,21 @@
 
   function keepDockInView(dock) {
     if (!dock) return;
-    requestAnimationFrame(() => {
+    const rect = dock.getBoundingClientRect();
+    const room = window.innerHeight - 12;
+    if (rect.bottom > room || rect.top < 0) {
       dock.scrollIntoView({ block: "nearest", behavior: "smooth" });
-    });
+    }
+  }
+
+  function focusPracticeEntry() {
+    if (state.helpMode) {
+      els.input.blur();
+      const firstChoice = $("#choice-row .choice");
+      if (firstChoice) firstChoice.focus();
+      return;
+    }
+    els.input.focus({ preventScroll: true });
   }
 
   function loadPracticeItem(item) {
@@ -198,6 +210,7 @@
     els.emoji.textContent = item.emoji;
     els.input.value = "";
     els.input.classList.remove("is-ok", "is-bad");
+    els.input.readOnly = !!state.helpMode;
     els.input.disabled = false;
     els.checkBtn.disabled = false;
     els.nextBtn.disabled = true;
@@ -281,9 +294,16 @@
     } catch (err) {
       /* ignore private mode */
     }
+    els.input.readOnly = !!on;
+    if (on) els.input.blur();
     if (!state.current || state.answered) return;
-    if (on) showChoices();
-    else hideChoices();
+    if (on) {
+      showChoices();
+      focusPracticeEntry();
+    } else {
+      hideChoices();
+      focusPracticeEntry();
+    }
   }
 
   const LETTER_ORDER = [
@@ -391,7 +411,7 @@
     state.recentIds.push(itemId(item));
     if (state.recentIds.length > 12) state.recentIds.shift();
     loadPracticeItem(item);
-    els.input.focus();
+    focusPracticeEntry();
   }
 
   function checkPractice() {
@@ -538,7 +558,14 @@
 
     els.checkBtn.addEventListener("click", checkPractice);
     $("#help-toggle").addEventListener("click", () => setHelpMode(!state.helpMode));
-    els.nextBtn.addEventListener("click", () => nextPractice(true));
+    els.nextBtn.addEventListener("click", () => {
+      els.nextBtn.blur();
+      nextPractice(true);
+    });
+
+    els.input.addEventListener("focus", () => {
+      if (state.helpMode || state.answered) els.input.blur();
+    });
 
     els.input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
@@ -557,7 +584,10 @@
       if (state.listenCurrent) playWord(state.listenCurrent.speak);
     });
     els.listenCheck.addEventListener("click", checkListen);
-    els.listenNext.addEventListener("click", nextListen);
+    els.listenNext.addEventListener("click", () => {
+      els.listenNext.blur();
+      nextListen();
+    });
     els.listenInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
