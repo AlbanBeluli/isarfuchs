@@ -29,7 +29,6 @@
     progressFill: $("#progress-fill"),
     progressLabel: $("#progress-label"),
     emoji: $("#emoji-display"),
-    wordHint: $("#word-hint"),
     input: $("#letter-input"),
     checkBtn: $("#check-btn"),
     nextBtn: $("#next-btn"),
@@ -178,7 +177,6 @@
     state.current = item;
     state.answered = false;
     els.emoji.textContent = item.emoji;
-    els.wordHint.textContent = "Tippe den Lautsprecher, dann den Anlaut.";
     els.input.value = "";
     els.input.classList.remove("is-ok", "is-bad");
     els.input.disabled = false;
@@ -224,7 +222,6 @@
     const row = $("#choice-row");
     row.hidden = true;
     row.innerHTML = "";
-    $("#unsure-btn").hidden = state.helpMode;
   }
 
   function markChoices(picked) {
@@ -240,8 +237,6 @@
     const row = $("#choice-row");
     row.hidden = false;
     row.innerHTML = "";
-    $("#unsure-btn").hidden = true;
-    els.wordHint.textContent = "Einer davon ist richtig.";
     pickChoices(state.current.letter).forEach((letter) => {
       const btn = document.createElement("button");
       btn.type = "button";
@@ -266,10 +261,7 @@
     } catch (err) {
       /* ignore private mode */
     }
-    if (!state.current || state.answered) {
-      $("#unsure-btn").hidden = on;
-      return;
-    }
+    if (!state.current || state.answered) return;
     if (on) showChoices();
     else hideChoices();
   }
@@ -538,7 +530,6 @@
     });
 
     els.checkBtn.addEventListener("click", checkPractice);
-    $("#unsure-btn").addEventListener("click", showChoices);
     $("#help-toggle").addEventListener("click", () => setHelpMode(!state.helpMode));
     els.nextBtn.addEventListener("click", () => nextPractice(true));
     els.skipBtn.addEventListener("click", () => {
