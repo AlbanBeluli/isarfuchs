@@ -32,7 +32,6 @@
     input: $("#letter-input"),
     checkBtn: $("#check-btn"),
     nextBtn: $("#next-btn"),
-    skipBtn: $("#skip-btn"),
     speakBtn: $("#speak-word"),
     feedback: $("#feedback"),
     lautGrid: $("#laut-grid"),
@@ -40,7 +39,6 @@
     listenInput: $("#listen-input"),
     listenCheck: $("#listen-check"),
     listenNext: $("#listen-next"),
-    listenSkip: $("#listen-skip"),
     listenSpeak: $("#speak-listen"),
     listenFeedback: $("#listen-feedback"),
     listenHint: $("#listen-hint"),
@@ -532,11 +530,6 @@
     els.checkBtn.addEventListener("click", checkPractice);
     $("#help-toggle").addEventListener("click", () => setHelpMode(!state.helpMode));
     els.nextBtn.addEventListener("click", () => nextPractice(true));
-    els.skipBtn.addEventListener("click", () => {
-      state.streak = 0;
-      updateStats();
-      nextPractice(true);
-    });
 
     els.input.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
@@ -556,11 +549,6 @@
     });
     els.listenCheck.addEventListener("click", checkListen);
     els.listenNext.addEventListener("click", nextListen);
-    els.listenSkip.addEventListener("click", () => {
-      state.streak = 0;
-      updateStats();
-      nextListen();
-    });
     els.listenInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();

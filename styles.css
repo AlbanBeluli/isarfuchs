@@ -490,7 +490,7 @@ h1 {
 
 .practice-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
@@ -498,7 +498,7 @@ h1 {
 }
 
 .practice-actions .btn.secondary {
-  min-width: 140px;
+  min-width: 160px;
 }
 
 .parent-setup {
