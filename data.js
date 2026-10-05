@@ -1,0 +1,171 @@
+/**
+ * Anlaut-Daten für Klasse 1 (Druckschrift).
+ * letter muss der Anlaut sein, nie ein Laut am Wortende.
+ * speak  = Wort für Sprachausgabe (deutsch)
+ * group  = Filter in der Tabelle
+ *
+ * Angelehnt an typische Laut-/Anlauttabellen im Anfangsunterricht
+ * (z. B. Affe, Apfel, Ball …) – nicht 1:1 ein Verlagswerk.
+ */
+window.LAUT_DATA = [
+  // Vokale
+  { letter: "A", word: "Affe", emoji: "🐒", speak: "Affe", group: "vowel" },
+  { letter: "A", word: "Apfel", emoji: "🍎", speak: "Apfel", group: "vowel" },
+  { letter: "A", word: "Ameise", emoji: "🐜", speak: "Ameise", group: "vowel" },
+  { letter: "A", word: "Ampel", emoji: "🚦", speak: "Ampel", group: "vowel" },
+  { letter: "A", word: "Ananas", emoji: "🍍", speak: "Ananas", group: "vowel" },
+  { letter: "A", word: "Angel", emoji: "🎣", speak: "Angel", group: "vowel" },
+  { letter: "A", word: "Anker", emoji: "⚓", speak: "Anker", group: "vowel" },
+  { letter: "E", word: "Ente", emoji: "🦆", speak: "Ente", group: "vowel" },
+  { letter: "E", word: "Esel", emoji: "🫏", speak: "Esel", group: "vowel" },
+  { letter: "E", word: "Elefant", emoji: "🐘", speak: "Elefant", group: "vowel" },
+  { letter: "E", word: "Erdbeere", emoji: "🍓", speak: "Erdbeere", group: "vowel" },
+  { letter: "E", word: "Engel", emoji: "👼", speak: "Engel", group: "vowel" },
+  { letter: "I", word: "Igel", emoji: "🦔", speak: "Igel", group: "vowel" },
+  { letter: "I", word: "Insel", emoji: "🏝️", speak: "Insel", group: "vowel" },
+  { letter: "I", word: "Inliner", emoji: "🛼", speak: "Inliner", group: "vowel" },
+  { letter: "I", word: "Iris", emoji: "🪻", speak: "Iris", group: "vowel" },
+  { letter: "O", word: "Oma", emoji: "👵", speak: "Oma", group: "vowel" },
+  { letter: "O", word: "Opa", emoji: "👴", speak: "Opa", group: "vowel" },
+  { letter: "O", word: "Orange", emoji: "🍊", speak: "Orange", group: "vowel" },
+  { letter: "O", word: "Ohr", emoji: "👂", speak: "Ohr", group: "vowel" },
+  { letter: "O", word: "Oktopus", emoji: "🐙", speak: "Oktopus", group: "vowel" },
+  { letter: "U", word: "Uhr", emoji: "🕐", speak: "Uhr", group: "vowel" },
+  { letter: "U", word: "Ufo", emoji: "🛸", speak: "Ufo", group: "vowel" },
+  { letter: "U", word: "U-Bahn", emoji: "🚇", speak: "U-Bahn", group: "vowel" },
+
+  // Umlaute
+  { letter: "Ä", word: "Äpfel", emoji: "🍏", speak: "Äpfel", group: "umlaut" },
+  { letter: "Ö", word: "Öl", emoji: "🛢️", speak: "Öl", group: "umlaut" },
+  { letter: "Ü", word: "Übung", emoji: "🤸", speak: "Übung", group: "umlaut" },
+
+  // Zwielaute
+  { letter: "AU", word: "Auto", emoji: "🚗", speak: "Auto", group: "diphthong" },
+  { letter: "AU", word: "Auge", emoji: "👁️", speak: "Auge", group: "diphthong" },
+  { letter: "EI", word: "Eis", emoji: "🍦", speak: "Eis", group: "diphthong" },
+  { letter: "EI", word: "Ei", emoji: "🥚", speak: "Ei", group: "diphthong" },
+  { letter: "EI", word: "Eimer", emoji: "🪣", speak: "Eimer", group: "diphthong" },
+  { letter: "EU", word: "Eule", emoji: "🦉", speak: "Eule", group: "diphthong" },
+  { letter: "EU", word: "Euro", emoji: "💶", speak: "Euro", group: "diphthong" },
+
+  // Konsonanten
+  { letter: "B", word: "Ball", emoji: "⚽", speak: "Ball", group: "consonant" },
+  { letter: "B", word: "Baum", emoji: "🌳", speak: "Baum", group: "consonant" },
+  { letter: "B", word: "Buch", emoji: "📖", speak: "Buch", group: "consonant" },
+  { letter: "B", word: "Banane", emoji: "🍌", speak: "Banane", group: "consonant" },
+  { letter: "B", word: "Bär", emoji: "🐻", speak: "Bär", group: "consonant" },
+  { letter: "B", word: "Biene", emoji: "🐝", speak: "Biene", group: "consonant" },
+  { letter: "B", word: "Blume", emoji: "🌸", speak: "Blume", group: "consonant" },
+  { letter: "B", word: "Bus", emoji: "🚌", speak: "Bus", group: "consonant" },
+  { letter: "C", word: "Clown", emoji: "🤡", speak: "Clown", group: "consonant" },
+  { letter: "C", word: "Computer", emoji: "💻", speak: "Computer", group: "consonant" },
+  { letter: "C", word: "Cowboy", emoji: "🤠", speak: "Cowboy", group: "consonant" },
+  { letter: "C", word: "Cupcake", emoji: "🧁", speak: "Cupcake", group: "consonant" },
+  { letter: "C", word: "Croissant", emoji: "🥐", speak: "Croissant", group: "consonant" },
+  { letter: "D", word: "Dino", emoji: "🦕", speak: "Dino", group: "consonant" },
+  { letter: "D", word: "Dose", emoji: "🥫", speak: "Dose", group: "consonant" },
+  { letter: "D", word: "Delphin", emoji: "🐬", speak: "Delphin", group: "consonant" },
+  { letter: "D", word: "Drachen", emoji: "🐉", speak: "Drachen", group: "consonant" },
+  { letter: "D", word: "Daumen", emoji: "👍", speak: "Daumen", group: "consonant" },
+  { letter: "F", word: "Fisch", emoji: "🐟", speak: "Fisch", group: "consonant" },
+  { letter: "F", word: "Fuchs", emoji: "🦊", speak: "Fuchs", group: "consonant" },
+  { letter: "F", word: "Fahrrad", emoji: "🚲", speak: "Fahrrad", group: "consonant" },
+  { letter: "F", word: "Frosch", emoji: "🐸", speak: "Frosch", group: "consonant" },
+  { letter: "F", word: "Feuer", emoji: "🔥", speak: "Feuer", group: "consonant" },
+  { letter: "F", word: "Feder", emoji: "🪶", speak: "Feder", group: "consonant" },
+  { letter: "G", word: "Giraffe", emoji: "🦒", speak: "Giraffe", group: "consonant" },
+  { letter: "G", word: "Gitarre", emoji: "🎸", speak: "Gitarre", group: "consonant" },
+  { letter: "G", word: "Gespenst", emoji: "👻", speak: "Gespenst", group: "consonant" },
+  { letter: "G", word: "Glocke", emoji: "🔔", speak: "Glocke", group: "consonant" },
+  { letter: "G", word: "Geschenk", emoji: "🎁", speak: "Geschenk", group: "consonant" },
+  { letter: "H", word: "Hund", emoji: "🐶", speak: "Hund", group: "consonant" },
+  { letter: "H", word: "Haus", emoji: "🏠", speak: "Haus", group: "consonant" },
+  { letter: "H", word: "Hase", emoji: "🐰", speak: "Hase", group: "consonant" },
+  { letter: "H", word: "Herz", emoji: "❤️", speak: "Herz", group: "consonant" },
+  { letter: "H", word: "Hut", emoji: "🎩", speak: "Hut", group: "consonant" },
+  { letter: "H", word: "Honig", emoji: "🍯", speak: "Honig", group: "consonant" },
+  { letter: "J", word: "Jacke", emoji: "🧥", speak: "Jacke", group: "consonant" },
+  { letter: "J", word: "Jojo", emoji: "🪀", speak: "Jojo", group: "consonant" },
+  { letter: "J", word: "Junge", emoji: "👦", speak: "Junge", group: "consonant" },
+  { letter: "K", word: "Katze", emoji: "🐱", speak: "Katze", group: "consonant" },
+  { letter: "K", word: "Kuchen", emoji: "🍰", speak: "Kuchen", group: "consonant" },
+  { letter: "K", word: "Kuh", emoji: "🐄", speak: "Kuh", group: "consonant" },
+  { letter: "K", word: "König", emoji: "🤴", speak: "König", group: "consonant" },
+  { letter: "K", word: "Kirsche", emoji: "🍒", speak: "Kirsche", group: "consonant" },
+  { letter: "K", word: "Krokodil", emoji: "🐊", speak: "Krokodil", group: "consonant" },
+  { letter: "L", word: "Löwe", emoji: "🦁", speak: "Löwe", group: "consonant" },
+  { letter: "L", word: "Lama", emoji: "🦙", speak: "Lama", group: "consonant" },
+  { letter: "L", word: "Löffel", emoji: "🥄", speak: "Löffel", group: "consonant" },
+  { letter: "L", word: "Leiter", emoji: "🪜", speak: "Leiter", group: "consonant" },
+  { letter: "L", word: "Lutscher", emoji: "🍭", speak: "Lutscher", group: "consonant" },
+  { letter: "M", word: "Maus", emoji: "🐭", speak: "Maus", group: "consonant" },
+  { letter: "M", word: "Mond", emoji: "🌙", speak: "Mond", group: "consonant" },
+  { letter: "M", word: "Mütze", emoji: "🧢", speak: "Mütze", group: "consonant" },
+  { letter: "M", word: "Milch", emoji: "🥛", speak: "Milch", group: "consonant" },
+  { letter: "M", word: "Motorrad", emoji: "🏍️", speak: "Motorrad", group: "consonant" },
+  { letter: "N", word: "Nase", emoji: "👃", speak: "Nase", group: "consonant" },
+  { letter: "N", word: "Nest", emoji: "🪺", speak: "Nest", group: "consonant" },
+  { letter: "N", word: "Nashorn", emoji: "🦏", speak: "Nashorn", group: "consonant" },
+  { letter: "N", word: "Nilpferd", emoji: "🦛", speak: "Nilpferd", group: "consonant" },
+  { letter: "N", word: "Note", emoji: "🎵", speak: "Note", group: "consonant" },
+  { letter: "P", word: "Paket", emoji: "📦", speak: "Paket", group: "consonant" },
+  { letter: "P", word: "Pilz", emoji: "🍄", speak: "Pilz", group: "consonant" },
+  { letter: "P", word: "Pinguin", emoji: "🐧", speak: "Pinguin", group: "consonant" },
+  { letter: "P", word: "Palme", emoji: "🌴", speak: "Palme", group: "consonant" },
+  { letter: "P", word: "Pizza", emoji: "🍕", speak: "Pizza", group: "consonant" },
+  { letter: "P", word: "Papagei", emoji: "🦜", speak: "Papagei", group: "consonant" },
+  { letter: "Q", word: "Qualle", emoji: "🪼", speak: "Qualle", group: "consonant" },
+  { letter: "R", word: "Rose", emoji: "🌹", speak: "Rose", group: "consonant" },
+  { letter: "R", word: "Rakete", emoji: "🚀", speak: "Rakete", group: "consonant" },
+  { letter: "R", word: "Regenbogen", emoji: "🌈", speak: "Regenbogen", group: "consonant" },
+  { letter: "R", word: "Roller", emoji: "🛴", speak: "Roller", group: "consonant" },
+  { letter: "R", word: "Rutsche", emoji: "🛝", speak: "Rutsche", group: "consonant" },
+  { letter: "S", word: "Sonne", emoji: "☀️", speak: "Sonne", group: "consonant" },
+  { letter: "S", word: "Saft", emoji: "🧃", speak: "Saft", group: "consonant" },
+  { letter: "S", word: "Socke", emoji: "🧦", speak: "Socke", group: "consonant" },
+  { letter: "S", word: "Seife", emoji: "🧼", speak: "Seife", group: "consonant" },
+  { letter: "S", word: "Salat", emoji: "🥗", speak: "Salat", group: "consonant" },
+  { letter: "T", word: "Tiger", emoji: "🐯", speak: "Tiger", group: "consonant" },
+  { letter: "T", word: "Tasse", emoji: "☕", speak: "Tasse", group: "consonant" },
+  { letter: "T", word: "Teddy", emoji: "🧸", speak: "Teddy", group: "consonant" },
+  { letter: "T", word: "Telefon", emoji: "📞", speak: "Telefon", group: "consonant" },
+  { letter: "T", word: "Tomate", emoji: "🍅", speak: "Tomate", group: "consonant" },
+  { letter: "T", word: "Traktor", emoji: "🚜", speak: "Traktor", group: "consonant" },
+  { letter: "V", word: "Vogel", emoji: "🐦", speak: "Vogel", group: "consonant" },
+  { letter: "V", word: "Vase", emoji: "🏺", speak: "Vase", group: "consonant" },
+  { letter: "V", word: "Vampir", emoji: "🧛", speak: "Vampir", group: "consonant" },
+  { letter: "V", word: "Violine", emoji: "🎻", speak: "Violine", group: "consonant" },
+  { letter: "W", word: "Wal", emoji: "🐋", speak: "Wal", group: "consonant" },
+  { letter: "W", word: "Wolke", emoji: "☁️", speak: "Wolke", group: "consonant" },
+  { letter: "W", word: "Wasser", emoji: "💧", speak: "Wasser", group: "consonant" },
+  { letter: "W", word: "Wurm", emoji: "🪱", speak: "Wurm", group: "consonant" },
+  { letter: "W", word: "Würfel", emoji: "🎲", speak: "Würfel", group: "consonant" },
+  { letter: "W", word: "Welle", emoji: "🌊", speak: "Welle", group: "consonant" },
+  { letter: "Y", word: "Yoga", emoji: "🧘", speak: "Yoga", group: "consonant" },
+  { letter: "Z", word: "Zug", emoji: "🚂", speak: "Zug", group: "consonant" },
+  { letter: "Z", word: "Zebra", emoji: "🦓", speak: "Zebra", group: "consonant" },
+  { letter: "Z", word: "Zitrone", emoji: "🍋", speak: "Zitrone", group: "consonant" },
+  { letter: "Z", word: "Zelt", emoji: "⛺", speak: "Zelt", group: "consonant" },
+  { letter: "Z", word: "Ziege", emoji: "🐐", speak: "Ziege", group: "consonant" },
+
+  // Mehrgrapheme / besondere Laute
+  { letter: "SCH", word: "Schaf", emoji: "🐑", speak: "Schaf", group: "special" },
+  { letter: "SCH", word: "Schuh", emoji: "👟", speak: "Schuh", group: "special" },
+  { letter: "PF", word: "Pferd", emoji: "🐴", speak: "Pferd", group: "special" },
+  { letter: "PF", word: "Pfeil", emoji: "🏹", speak: "Pfeil", group: "special" },
+  { letter: "SP", word: "Spinne", emoji: "🕷️", speak: "Spinne", group: "special" },
+  { letter: "ST", word: "Stern", emoji: "⭐", speak: "Stern", group: "special" },
+];
+
+/** Eintrag pro Graphem für die Übersichtstabelle (erste passende Karte). */
+window.TABLE_ENTRIES = (function uniqueByLetter(list) {
+  const seen = new Set();
+  const out = [];
+  for (const item of list) {
+    if (seen.has(item.letter)) continue;
+    seen.add(item.letter);
+    out.push(item);
+  }
+  return out;
+})(window.LAUT_DATA);
+

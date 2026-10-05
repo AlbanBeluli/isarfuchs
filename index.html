@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#5b8def" />
+  <title>IsarFuchs – Lauttabelle</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="img/isarfuchs.jpg" type="image/jpeg" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <img class="brand-logo" src="img/isarfuchs.jpg" alt="" width="200" height="200" />
+        <div class="brand-text">
+          <h1 class="brand-title" aria-label="IsarFuchs">
+            <span class="brand-isar">Isar</span><span class="brand-fuchs">Fuchs</span>
+          </h1>
+          <p class="subtitle">Anlaute hören und Buchstaben schreiben</p>
+        </div>
+      </div>
+      <div class="stats" aria-live="polite">
+        <span class="stat" title="Richtige Antworten">
+          <span class="stat-icon">⭐</span>
+          <span id="score">0</span>
+        </span>
+        <span class="stat" title="Serie">
+          <span class="stat-icon">🔥</span>
+          <span id="streak">0</span>
+        </span>
+      </div>
+    </header>
+
+    <nav class="tabs" role="tablist" aria-label="Modus">
+      <button class="tab is-active" role="tab" aria-selected="true" data-mode="practice" id="tab-practice">Üben</button>
+      <button class="tab" role="tab" aria-selected="false" data-mode="table" id="tab-table">Tabelle</button>
+      <button class="tab" role="tab" aria-selected="false" data-mode="listen" id="tab-listen">Hören</button>
+    </nav>
+
+    <!-- PRACTICE -->
+    <main id="mode-practice" class="panel is-visible" role="tabpanel" aria-labelledby="tab-practice">
+      <details class="parent-setup" id="parent-setup">
+        <summary>
+          <span>Übung einstellen</span>
+          <span class="setup-summary" id="setup-summary">Alle</span>
+        </summary>
+        <div class="parent-setup-body">
+          <div class="filters" id="practice-filters" aria-label="Übungsgruppe">
+            <button type="button" class="chip is-active" data-practice-filter="all">Alle</button>
+            <button type="button" class="chip" data-practice-filter="vowel">Vokale</button>
+            <button type="button" class="chip" data-practice-filter="umlaut">Umlaute</button>
+            <button type="button" class="chip" data-practice-filter="diphthong">Zwielaute</button>
+            <button type="button" class="chip" data-practice-filter="consonant">Konsonanten</button>
+            <button type="button" class="chip" data-practice-filter="special">sch / ch / …</button>
+          </div>
+          <div class="letter-picker">
+            <p class="picker-label">Buchstaben für diese Übung</p>
+            <div class="filters" id="letter-filters" aria-label="Buchstaben auswählen">
+              <button type="button" class="chip is-active" data-letter="all">Alle</button>
+            </div>
+          </div>
+        </div>
+      </details>
+      <section class="card practice-card">
+        <div class="progress-row">
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+          <span class="progress-label" id="progress-label">1 / 10</span>
+        </div>
+
+        <div class="emoji-stage">
+          <div class="emoji-row">
+            <div class="emoji-bubble" id="emoji-display" aria-hidden="true">🐒</div>
+            <button type="button" class="speak-btn side" id="speak-word" aria-label="Wort vorsprechen" title="Anhören">
+              <span class="speak-icon">🔊</span>
+            </button>
+          </div>
+          <p class="hint" id="word-hint">Was hörst du am Anfang?</p>
+        </div>
+
+        <p class="prompt">Schreib den <strong>Anlaut</strong> (ersten Laut):</p>
+
+        <div class="answer-row">
+          <input
+            id="letter-input"
+            class="letter-input"
+            type="text"
+            maxlength="3"
+            autocomplete="off"
+            autocapitalize="characters"
+            spellcheck="false"
+            inputmode="text"
+            aria-label="Buchstabe eingeben"
+            placeholder="?"
+          />
+          <button type="button" class="btn primary" id="check-btn">Prüfen</button>
+        </div>
+
+        <div class="help-row">
+          <button type="button" class="chip" id="help-toggle" aria-pressed="false">Hilfe: 3 Buchstaben</button>
+          <button type="button" class="btn ghost" id="unsure-btn">Nicht sicher?</button>
+        </div>
+        <div class="choice-row" id="choice-row" hidden></div>
+
+        <div class="feedback-row" id="feedback-row" hidden>
+          <p class="feedback" id="feedback" aria-live="assertive"></p>
+          <button type="button" class="speak-btn replay" id="replay-feedback" aria-label="Satz noch mal anhören" title="Nochmal">
+            <span class="speak-icon">🔊</span>
+          </button>
+        </div>
+
+        <div class="practice-actions">
+          <button type="button" class="btn ghost" id="skip-btn">Überspringen</button>
+          <button type="button" class="btn secondary" id="next-btn" hidden>Weiter →</button>
+        </div>
+      </section>
+    </main>
+
+    <!-- FULL TABLE -->
+    <main id="mode-table" class="panel" role="tabpanel" aria-labelledby="tab-table" hidden>
+      <section class="card">
+        <div class="section-head">
+          <h2>Meine Lauttabelle</h2>
+          <p>Tippe auf eine Karte. Hör zu und merke dir den Laut.</p>
+        </div>
+        <div class="filters">
+          <button type="button" class="chip is-active" data-filter="all">Alle</button>
+          <button type="button" class="chip" data-filter="vowel">Vokale</button>
+          <button type="button" class="chip" data-filter="umlaut">Umlaute</button>
+          <button type="button" class="chip" data-filter="diphthong">Zwielaute</button>
+          <button type="button" class="chip" data-filter="consonant">Konsonanten</button>
+          <button type="button" class="chip" data-filter="special">sch / ch / …</button>
+        </div>
+        <div class="laut-grid" id="laut-grid"></div>
+      </section>
+    </main>
+
+    <!-- LISTEN / QUIZ VARIANT -->
+    <main id="mode-listen" class="panel" role="tabpanel" aria-labelledby="tab-listen" hidden>
+      <section class="card practice-card">
+        <div class="section-head">
+          <h2>Nur hören</h2>
+          <p>Kein Bild. Hör das Wort und tippe den Anlaut.</p>
+        </div>
+        <div class="emoji-stage listen-stage">
+          <button type="button" class="speak-btn big" id="speak-listen" aria-label="Wort vorsprechen">
+            <span class="speak-icon">🔊</span>
+            <span class="speak-label">Wort anhören</span>
+          </button>
+          <p class="hint" id="listen-hint">Drücke den Lautsprecher.</p>
+        </div>
+        <div class="answer-row">
+          <input
+            id="listen-input"
+            class="letter-input"
+            type="text"
+            maxlength="3"
+            autocomplete="off"
+            autocapitalize="characters"
+            spellcheck="false"
+            inputmode="text"
+            aria-label="Buchstabe eingeben"
+            placeholder="?"
+          />
+          <button type="button" class="btn primary" id="listen-check">Prüfen</button>
+        </div>
+        <div class="feedback-row" id="listen-feedback-row" hidden>
+          <p class="feedback" id="listen-feedback" aria-live="assertive"></p>
+          <button type="button" class="speak-btn replay" id="replay-listen" aria-label="Satz noch mal anhören" title="Nochmal">
+            <span class="speak-icon">🔊</span>
+          </button>
+        </div>
+        <div class="practice-actions">
+          <button type="button" class="btn ghost" id="listen-skip">Überspringen</button>
+          <button type="button" class="btn secondary" id="listen-next" hidden>Weiter →</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Für Münchner Kindl 🩵🤍</p>
+    </footer>
+  </div>
+
+  <div class="cheer" id="cheer" aria-hidden="true"></div>
+  <div class="confetti" id="confetti" aria-hidden="true"></div>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

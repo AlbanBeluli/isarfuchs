@@ -1,0 +1,17 @@
+.DS_Store
+__pycache__/
+*.pyc
+*.bak
+*.bak*
+.claude/
+.cline.md
+
+node_modules/
+.cache/
+.home/
+package-lock.json
+.npm/
+.env
+.env.*
+*.pem
+.wrangler/
