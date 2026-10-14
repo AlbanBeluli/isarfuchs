@@ -124,6 +124,30 @@ def jobs():
 
     yield AUDIO / "lines" / "super.m4a", "Super gemacht. Neue Runde."
 
+    yield from math_jobs()
+
+
+ZAHLEN = [
+    "null", "eins", "zwei", "drei", "vier", "fünf", "sechs", "sieben", "acht",
+    "neun", "zehn", "elf", "zwölf", "dreizehn", "vierzehn", "fünfzehn",
+    "sechzehn", "siebzehn", "achtzehn", "neunzehn", "zwanzig",
+]
+
+
+def math_jobs():
+    """Mathe (math.js): prompts and feedback, numbers 0 to 20."""
+    out = AUDIO / "math"
+    yield out / "wie-viele.m4a", "Wie viele siehst du?"
+    yield out / "rechne.m4a", "Rechne aus."
+    yield out / "zahlenhaus.m4a", "Wie viele fehlen im Zahlenhaus?"
+    yield out / "vergleiche.m4a", "Was passt? Größer, kleiner oder gleich?"
+    yield out / "richtig.m4a", "Richtig."
+    yield out / "fast.m4a", "Fast. Schau noch mal."
+    for n, word in enumerate(ZAHLEN):
+        yield out / f"zahl-{n}.m4a", word.capitalize()
+        yield out / f"richtig-{n}.m4a", f"Richtig. [[slnc 150]] {word.capitalize()}."
+        yield out / f"fast-{n}.m4a", f"Fast. Richtig ist [[slnc 150]] {word}."
+
 
 def main():
     tasks = list(jobs())

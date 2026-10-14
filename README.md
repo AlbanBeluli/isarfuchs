@@ -37,6 +37,21 @@ A right answer is green. A party popper pops in the middle of the screen, then f
 
 Stars and the streak sit in the header. They reset when the page is reloaded. The 3-letter help switch is remembered for this browser tab.
 
+## Mathe
+
+**Mathe** is a fourth tab for Klasse 1 maths (LehrplanPLUS Bayern level, not a copy of any book). It lives in `math.js` and reuses the stars, streak, feedback, cheer and confetti from `app.js` (`window.IsarFuchs`).
+
+**Übung einstellen** picks one kind or Gemischt:
+
+- **Zählen bis 20.** 1 to 20 emoji objects in Zehnerfelder (rows of five, a new field after ten). Type how many.
+- **Plus / Minus bis 10, bis 20.** The sum, with red and blue dots in Zehnerfeldern. For minus, the taken-away dots are crossed out.
+- **Zahlenhaus.** Roof number 3 to 10, one floor number given, type the missing one.
+- **< > =.** Two numbers with dots. Tap or type `<`, `=` or `>`.
+
+Rounds of 10. Enter checks, Enter again goes on. Only digits go into the box.
+
+Audio is in `audio/math/`: prompts (`wie-viele`, `rechne`, `zahlenhaus`, `vergleiche`), `richtig`, `fast`, and `zahl-N`, `richtig-N`, `fast-N` for 0 to 20. The same script generates them.
+
 ## Speech
 
 German audio is bundled in `audio/`. The voice is Anna (macOS, de_DE). The browser does not use the device language. An English Mac still hears German.
@@ -134,6 +149,7 @@ The script needs macOS `say` with the voice Anna, plus `afconvert`. It writes `.
 index.html                 page
 styles.css                 layout
 app.js                     modes, scoring, playback
+math.js                    Mathe tab
 data.js                    words and letters
 scripts/generate-audio.py  Anna clips
 audio/                     German speech, ship this with the site

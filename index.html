@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#5b8def" />
-  <title>IsarFuchs – Lauttabelle</title>
+  <title>IsarFuchs – Lauttabelle und Mathe</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="img/isarfuchs.jpg" type="image/jpeg" />
 </head>
@@ -17,7 +17,7 @@
           <h1 class="brand-title" aria-label="IsarFuchs">
             <span class="brand-isar">Isar</span><span class="brand-fuchs">Fuchs</span>
           </h1>
-          <p class="subtitle">Anlaute hören und Buchstaben schreiben</p>
+          <p class="subtitle">Anlaute hören, Buchstaben schreiben, rechnen</p>
         </div>
       </div>
       <div class="stats" aria-live="polite">
@@ -36,6 +36,7 @@
       <button class="tab is-active" role="tab" aria-selected="true" data-mode="practice" id="tab-practice">Üben</button>
       <button class="tab" role="tab" aria-selected="false" data-mode="table" id="tab-table">Tabelle</button>
       <button class="tab" role="tab" aria-selected="false" data-mode="listen" id="tab-listen">Hören</button>
+      <button class="tab" role="tab" aria-selected="false" data-mode="math" id="tab-math">Mathe</button>
     </nav>
 
     <!-- PRACTICE -->
@@ -176,6 +177,72 @@
       </section>
     </main>
 
+    <!-- MATHE (Klasse 1) -->
+    <main id="mode-math" class="panel" role="tabpanel" aria-labelledby="tab-math" hidden>
+      <details class="parent-setup" id="math-setup">
+        <summary>
+          <span>Übung einstellen</span>
+          <span class="setup-summary" id="math-summary">Gemischt</span>
+        </summary>
+        <div class="parent-setup-body">
+          <div class="filters" id="math-filters" aria-label="Matheübung">
+            <button type="button" class="chip is-active" data-math="mix">Gemischt</button>
+            <button type="button" class="chip" data-math="count">Zählen bis 20</button>
+            <button type="button" class="chip" data-math="plus10">Plus bis 10</button>
+            <button type="button" class="chip" data-math="minus10">Minus bis 10</button>
+            <button type="button" class="chip" data-math="plus20">Plus bis 20</button>
+            <button type="button" class="chip" data-math="minus20">Minus bis 20</button>
+            <button type="button" class="chip" data-math="house">Zahlenhaus</button>
+            <button type="button" class="chip" data-math="compare">&lt; &gt; =</button>
+          </div>
+        </div>
+      </details>
+      <section class="card practice-card">
+        <div class="progress-row">
+          <div class="progress-track" aria-hidden="true">
+            <div class="progress-fill" id="math-progress-fill"></div>
+          </div>
+          <span class="progress-label" id="math-progress-label">1 / 10</span>
+        </div>
+
+        <div class="math-head">
+          <p class="math-prompt" id="math-prompt">Wie viele siehst du?</p>
+          <button type="button" class="speak-btn replay" id="math-speak" aria-label="Aufgabe anhören" title="Anhören">
+            <span class="speak-icon">🔊</span>
+          </button>
+        </div>
+        <div class="math-stage" id="math-stage" aria-live="polite"></div>
+
+        <div class="answer-row" id="math-answer-row">
+          <input
+            id="math-input"
+            class="letter-input"
+            type="text"
+            maxlength="2"
+            autocomplete="off"
+            spellcheck="false"
+            inputmode="numeric"
+            aria-label="Zahl eingeben"
+            placeholder="?"
+          />
+          <button type="button" class="btn primary" id="math-check">Prüfen</button>
+        </div>
+        <div class="choice-row" id="math-choices" hidden></div>
+
+        <div class="practice-dock" id="math-dock">
+          <div class="feedback-row is-empty" id="math-feedback-row">
+            <p class="feedback" id="math-feedback" aria-live="assertive"></p>
+            <button type="button" class="speak-btn replay" id="replay-math" aria-label="Satz noch mal anhören" title="Nochmal" hidden>
+              <span class="speak-icon">🔊</span>
+            </button>
+          </div>
+          <div class="practice-actions">
+            <button type="button" class="btn secondary" id="math-next" disabled>Weiter →</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <footer class="footer">
       <p>Für Münchner Kindl 🩵🤍</p>
     </footer>
@@ -185,5 +252,6 @@
   <div class="confetti" id="confetti" aria-hidden="true"></div>
   <script src="data.js"></script>
   <script src="app.js"></script>
+  <script src="math.js"></script>
 </body>
 </html>

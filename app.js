@@ -537,7 +537,28 @@
     });
     if (mode === "listen" && !state.listenCurrent) nextListen();
     if (mode === "table") renderTable();
+    if (mode === "math" && window.IsarMathe) window.IsarMathe.start();
   }
+
+  /* Shared hooks for the Mathe section (math.js). */
+  window.IsarFuchs = {
+    playUrl,
+    cheer,
+    burstConfetti,
+    showFeedback,
+    clearFeedback,
+    keepDockInView,
+    award(ok) {
+      if (ok) {
+        state.score += 1;
+        state.streak += 1;
+        if (state.streak % 5 === 0) burstConfetti();
+      } else {
+        state.streak = 0;
+      }
+      updateStats();
+    },
+  };
 
   /* ---------- wire up ---------- */
   function bind() {
